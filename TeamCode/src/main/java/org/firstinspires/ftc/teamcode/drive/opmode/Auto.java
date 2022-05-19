@@ -4,7 +4,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
+import org.firstinspires.ftc.teamcode.drive.Hardware;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Autonomous", group="Autonomous")
 //@Disabled
@@ -39,7 +39,7 @@ public class Auto extends LinearOpMode {
     public void editHere() {
         //TODO: Add auto
         robot.drivetrainSubsystem.followTrajectorySequence(robot.drivetrainSubsystem.trajectorySequenceBuilder(new Pose2d())
-                // Add commands below
+                // TODO: ADD ROBOT CODE BELOW!
                 .forward(40)
                 .back(40)
                 .strafeLeft(40)
@@ -50,5 +50,4 @@ public class Auto extends LinearOpMode {
                 .addDisplacementMarker(()-> robot.lift.setPower(0))
                 .build());
     }
-
 }

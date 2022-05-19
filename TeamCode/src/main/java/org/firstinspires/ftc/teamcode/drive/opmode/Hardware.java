@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.drive.opmode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -17,6 +19,8 @@ public class Hardware {
     /* Public OpMode members. */
     public DrivetrainSubsystem drivetrainSubsystem;
     public DcMotor intake;
+    public DcMotor lift;
+    public DcMotor climber;
     /* local OpMode members. */
     HardwareMap hwMap = null;
 
@@ -29,10 +33,22 @@ public class Hardware {
     public void init(HardwareMap ahwMap) {
         // Save reference to Hardware map
         hwMap = ahwMap;
-
-
         drivetrainSubsystem = new DrivetrainSubsystem(ahwMap);
+        intake = ahwMap.get(DcMotorEx.class, "intake");
+        climber = ahwMap.get(DcMotorEx.class, "climber");
+        lift = ahwMap.get(DcMotorEx.class, "lift");
 
+        intake.setDirection(DcMotorSimple.Direction.FORWARD);
+        climber.setDirection(DcMotorSimple.Direction.FORWARD);
+        lift.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        climber.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        intake.setPower(0);
+        climber.setPower(0);
+        lift.setPower(0);
     }
     public void displayTelemetry(Telemetry telemetry) {
         telemetry.addLine("Drive Encoder ticks")

@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.drive.Hardware;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Autonomous", group="Autonomous")
 //@Disabled
@@ -32,13 +33,12 @@ public class Auto extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        editHere();
+        robot.drivetrainSubsystem.followTrajectorySequence(getSequence(robot));
     }
 
+    public static TrajectorySequence getSequence(Hardware robot) {
 
-    public void editHere() {
-        //TODO: Add auto
-        robot.drivetrainSubsystem.followTrajectorySequence(robot.drivetrainSubsystem.trajectorySequenceBuilder(new Pose2d())
+        return robot.drivetrainSubsystem.trajectorySequenceBuilder(new Pose2d())
                 // TODO: ADD ROBOT CODE BELOW!
                 .forward(40)
                 .back(40)
@@ -48,6 +48,6 @@ public class Auto extends LinearOpMode {
                 .addDisplacementMarker(()-> robot.lift.setPower(1))
                 .waitSeconds(1)
                 .addDisplacementMarker(()-> robot.lift.setPower(0))
-                .build());
+                .build();
     }
 }

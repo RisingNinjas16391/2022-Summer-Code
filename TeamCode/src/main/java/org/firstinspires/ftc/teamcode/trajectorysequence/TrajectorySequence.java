@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.trajectorysequence;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 
 import org.firstinspires.ftc.teamcode.trajectorysequence.sequencesegment.SequenceSegment;
 
@@ -9,11 +10,13 @@ import java.util.List;
 
 public class TrajectorySequence {
     private final List<SequenceSegment> sequenceList;
+    private final List<Trajectory> trajectoryList;
 
-    public TrajectorySequence(List<SequenceSegment> sequenceList) {
+    public TrajectorySequence(List<SequenceSegment> sequenceList, List<Trajectory> trajectoryList) {
         if (sequenceList.size() == 0) throw new EmptySequenceException();
 
         this.sequenceList = Collections.unmodifiableList(sequenceList);
+        this.trajectoryList = Collections.unmodifiableList(trajectoryList);
     }
 
     public Pose2d start() {
@@ -40,5 +43,9 @@ public class TrajectorySequence {
 
     public int size() {
         return sequenceList.size();
+    }
+
+    public List<Trajectory> getTrajectoryList() {
+        return trajectoryList;
     }
 }

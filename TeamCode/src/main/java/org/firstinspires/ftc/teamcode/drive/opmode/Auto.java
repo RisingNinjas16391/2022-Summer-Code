@@ -45,9 +45,7 @@ public class Auto extends LinearOpMode {
                 .strafeLeft(40)
                 .strafeRight(40)
                 .turn(Math.toRadians(45))
-                .addDisplacementMarker(()-> robot.lift.setPower(1))
-                .waitSeconds(1)
-                .addDisplacementMarker(()-> robot.lift.setPower(0))
                 .build();
+
     }
 }

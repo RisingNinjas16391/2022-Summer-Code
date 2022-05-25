@@ -27,7 +27,6 @@ public class MeepMeepTesting {
                                 .build()
                 );
 
-        Hardware
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_FREIGHTFRENZY_ADI_DARK)
                 .setDarkMode(true)

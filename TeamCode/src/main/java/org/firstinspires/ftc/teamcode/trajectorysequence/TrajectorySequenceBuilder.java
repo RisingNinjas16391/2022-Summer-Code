@@ -44,6 +44,7 @@ public class TrajectorySequenceBuilder {
     private double currentTurnConstraintMaxAngAccel;
 
     private final List<SequenceSegment> sequenceSegments;
+    private final List<Trajectory> trajectories;
 
     private final List<TemporalMarker> temporalMarkers;
     private final List<DisplacementMarker> displacementMarkers;
@@ -85,6 +86,7 @@ public class TrajectorySequenceBuilder {
         this.currentTurnConstraintMaxAngAccel = baseTurnConstraintMaxAngAccel;
 
         sequenceSegments = new ArrayList<>();
+        trajectories = new ArrayList<>();
 
         temporalMarkers = new ArrayList<>();
         displacementMarkers = new ArrayList<>();
@@ -291,6 +293,8 @@ public class TrajectorySequenceBuilder {
         }
 
         Trajectory builtTraj = currentTrajectoryBuilder.build();
+
+        trajectories.add(builtTraj);
 
         double durationDifference = builtTraj.duration() - lastDurationTraj;
         double displacementDifference = builtTraj.getPath().length() - lastDisplacementTraj;
@@ -500,7 +504,7 @@ public class TrajectorySequenceBuilder {
                 temporalMarkers, displacementMarkers, spatialMarkers
         );
 
-        return new TrajectorySequence(projectGlobalMarkersToLocalSegments(globalMarkers, sequenceSegments));
+        return new TrajectorySequence(projectGlobalMarkersToLocalSegments(globalMarkers, sequenceSegments), trajectories);
     }
 
     private List<TrajectoryMarker> convertMarkersToGlobal(

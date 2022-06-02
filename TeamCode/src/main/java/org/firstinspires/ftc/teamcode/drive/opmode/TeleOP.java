@@ -51,7 +51,7 @@ public class TeleOP extends LinearOpMode {
         if (gamepad1.left_bumper) {
             robot.lift.setPower(-0.5);      //  Upward power
         } else if (gamepad1.right_bumper) {
-            robot.lift.setPower(0.2);       //  Downward power
+            robot.lift.setPower(0.5);       //  Downward power
         } else {
             robot.lift.setPower(0);
         }
